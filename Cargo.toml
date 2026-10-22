@@ -1,0 +1,39 @@
+[package]
+name = "no-comments"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.86"
+description = "A gate that fails when a Rust source file holds a comment."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/igouss/no-comments"
+readme = "README.md"
+keywords = ["lint", "comments", "gate", "rust"]
+categories = ["development-tools", "command-line-utilities"]
+
+[workspace]
+
+[lib]
+name = "no_comments"
+path = "src/lib.rs"
+
+[[bin]]
+name = "no-comments"
+path = "src/main.rs"
+
+[dependencies]
+ra-ap-rustc_lexer = "=0.178.0"
+serde_json = "1.0.151"
+unicode-ident = "=1.0.24"
+
+[dev-dependencies]
+cucumber = "0.21"
+hegeltest = "0.50.3"
+tempfile = "3.26"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+wildcard_enum_match_arm = "deny"
